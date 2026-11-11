@@ -41,3 +41,5 @@ offline medical documentation pipeline
 - [ ] autoreplacement or a ready made protocol
 - [ ] Client-Worker split / Raspberry Pi
 - [ ] highlighting empty columns
+- [ ] *Flexible Output & Hotkey Snippets
+- [ ] 
