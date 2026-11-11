@@ -24,6 +24,7 @@ offline medical documentation pipeline
 - [ ] initial_prompt: + Doctor Onboarding Script (dict_json and examples.txt)
 - [ ] defauit_template - norm template for quick appontments without exam
 - [ ] hash tables (key-value dict)
+- [ ] Fuzzy matching / RapidFuzz
 - [ ] normalization (comparing Vosk and Whisp chunks)
 - [ ] whisp small and base separation (terms and abbrevations) (?) -> or beam size one and focus on hash tables
 - [ ] ANONYMIZATION
@@ -38,3 +39,5 @@ offline medical documentation pipeline
 - [ ] hotkeys
 - [ ] sla
 - [ ] autoreplacement or a ready made protocol
+- [ ] Client-Worker split / Raspberry Pi
+- [ ] highlighting empty columns
