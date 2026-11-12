@@ -115,3 +115,47 @@ offline medical documentation pipeline
 - [ ] Client-Worker split / Raspberry Pi
 - [ ] sla
 
+
+
+
+
+flowchart TD
+    subgraph P0 ["Phase 0: Песочница"]
+        direction TB
+        OS["1. OS | sounddevice/pyaudio | silero/webrtcvad | llama-cpp + gguf | instructor/outlines"]
+        CH["2. chunks + VAD | few-shot | structured outputs"]
+        DB["3. sqlite + noise reduction + libs"]
+        OS --> CH --> DB
+    end
+
+    subgraph P1 ["Phase 1: Ядро обработки"]
+        direction TB
+        CORE["Whisper -> hash table -> RapidFuzz -> stop-words"]
+        
+        CORE --> A1["Auto-protocol: сбор в буфер"]
+        CORE --> C1["Copilot: streaming + realtime (каждые 15-20с)"]
+        
+        A1 & C1 --> TPL["default template (структура норм / клише)"]
+        TPL --> ANON["Anonymization"]
+    end
+
+    subgraph P2 ["Phase 2: Интерфейс и интеграция"]
+        direction TB
+        ANON --> LLM_A["Auto-protocol: LLM (пересказ фактов)"]
+        ANON --> LLM_C["Copilot: LLM (подсказки/идеи)"]
+        
+        LLM_A --> UI_A["UI: старт/стоп + подсветка пустых"]
+        LLM_C --> UI_C["UI: оверлей с карточками"]
+        
+        UI_A --> RPA_A["RPA: авто-печать в МИС / docxtpl"]
+        UI_C --> RPA_C["RPA: точечная вставка по клику"]
+    end
+
+    subgraph P3 ["Phase 3: Оптимизация"]
+        direction TB
+        RPA_A & RPA_C --> OPT["1. OPTIMIZATION (whisp small / base)"]
+        OPT --> CW["2. Client-Worker split (Raspberry Pi) + normalization"]
+        CW --> SLA["3. SLA"]
+    end
+
+    DB --> CORE
