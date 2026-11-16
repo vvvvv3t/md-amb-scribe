@@ -1,1 +1,3 @@
-
+[] sounddevice vs pyaudio
+[] webrcvad vs silero-vad
+[] verify RPi compatibility 
