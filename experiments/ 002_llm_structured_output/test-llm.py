@@ -7,10 +7,10 @@ from llama_cpp import Llama
 import instructor
 import outlines
 
-# Путь к скачанному файлу модели GGUF
+# путь к скачанному файлу модели GGUF
 MODEL_PATH = "qwen2.5-3b-instruct-q4_k_m.gguf"
 
-# Точная схема твоей медкарты (как на твоем скрине expected_json)
+# схема с json
 class MedicalProtocol(BaseModel):
     chief_complaint: str = Field(description="Главная жалоба пациента")
     duration: str = Field(description="Длительность симптомов")
