@@ -4,12 +4,11 @@ import pyaudio
 import sounddevice as sd
 
 SAMPLE_RATE = 16000
-CHUNK_SAMPLES = 512  # 32 мс
-TEST_SECONDS = 15    # длительность теста в секундах
+CHUNK_SAMPLES = 512  # 32 ms
+TEST_SECONDS = 15    # test latency
 
-
+# stress
 def stress_cpu():
-    # Имитация нагрузки на процессор (как будто рядом работает нейросеть)
     a = np.random.rand(300, 300)
     np.dot(a, a)
 
@@ -23,7 +22,7 @@ def test_sounddevice():
         for _ in range(total_chunks):
             t0 = time.perf_counter()
             data, overflowed = stream.read(CHUNK_SAMPLES)
-            # sounddevice сразу отдает numpy float32, конвертация почти не нужна
+            # 
             _ = data.flatten()
             convert_times.append(time.perf_counter() - t0)
 
